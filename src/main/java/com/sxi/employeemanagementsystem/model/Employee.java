@@ -1,5 +1,6 @@
 package com.sxi.employeemanagementsystem.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -16,13 +17,13 @@ public class Employee {
     private String lastName;
     private String tin;
     private String sssGsis;
-    private LocalDate Date;
+    private LocalDate hireDate;
     private float salary;
 
     public Employee() {
     }
 
-    public Employee(String employeeID, String companyID, String firstname, String middleName, String lastName, String tin, String sssGsis, LocalDate date, float salary) {
+    public Employee(String employeeID, String companyID, String firstname, String middleName, String lastName, String tin, String sssGsis, LocalDate hireDate, float salary) {
         this.employeeID = employeeID;
         this.companyID = companyID;
         this.firstname = firstname;
@@ -30,7 +31,7 @@ public class Employee {
         this.lastName = lastName;
         this.tin = tin;
         this.sssGsis = sssGsis;
-        Date = date;
+        this.hireDate = hireDate;
         this.salary = salary;
     }
 
@@ -91,11 +92,11 @@ public class Employee {
     }
 
     public LocalDate getDate() {
-        return Date;
+        return hireDate;
     }
 
-    public void setDate(LocalDate date) {
-        Date = date;
+    public void setDate(LocalDate hireDate) {
+        hireDate = hireDate;
     }
 
     public float getSalary() {
