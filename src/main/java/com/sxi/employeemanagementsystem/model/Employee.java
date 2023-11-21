@@ -1,6 +1,5 @@
 package com.sxi.employeemanagementsystem.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -12,7 +11,7 @@ public class Employee {
     @Id
     private String employeeID;
     private String companyID;
-    private String firstname;
+    private String firstName;
     private String middleName;
     private String lastName;
     private String tin;
@@ -23,10 +22,10 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String employeeID, String companyID, String firstname, String middleName, String lastName, String tin, String sssGsis, LocalDate hireDate, float salary) {
+    public Employee(String employeeID, String companyID, String firstName, String middleName, String lastName, String tin, String sssGsis, LocalDate hireDate, float salary) {
         this.employeeID = employeeID;
         this.companyID = companyID;
-        this.firstname = firstname;
+        this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
         this.tin = tin;
@@ -51,12 +50,12 @@ public class Employee {
         this.companyID = companyID;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getMiddleName() {
@@ -91,12 +90,12 @@ public class Employee {
         this.sssGsis = sssGsis;
     }
 
-    public LocalDate getDate() {
+    public LocalDate getHireDate() {
         return hireDate;
     }
 
-    public void setDate(LocalDate hireDate) {
-        hireDate = hireDate;
+    public void setHireDate(LocalDate hireDate) {
+        this.hireDate = hireDate;
     }
 
     public float getSalary() {
