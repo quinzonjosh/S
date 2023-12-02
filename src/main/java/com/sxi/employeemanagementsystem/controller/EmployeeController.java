@@ -1,16 +1,15 @@
 package com.sxi.employeemanagementsystem.controller;
 
+import com.sxi.employeemanagementsystem.exception.EmployeeNotFoundException;
 import com.sxi.employeemanagementsystem.model.Employee;
 import com.sxi.employeemanagementsystem.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin("http://localhost:5173/")
 public class EmployeeController {
 
     @Autowired
@@ -24,6 +23,12 @@ public class EmployeeController {
     @GetMapping("/employees")
     List<Employee> getAllEmployees(){
         return employeeRepository.findAll();
+    }
+
+    @GetMapping("employees/{employeeID}")
+    Employee getEmployee(@PathVariable String employeeID){
+        return employeeRepository.findById(employeeID)
+                .orElseThrow(()->new EmployeeNotFoundException(employeeID));
     }
 
 }
