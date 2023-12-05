@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:5173/")
+@CrossOrigin("http://localhost:5173")
 public class EmployeeController {
 
     @Autowired
@@ -31,7 +31,7 @@ public class EmployeeController {
                 .orElseThrow(()->new EmployeeNotFoundException(employeeID));
     }
 
-    @PutMapping("employees/{employeeID}")
+    @PutMapping("employees/edit/{employeeID}")
     Employee updateEmployee(@RequestBody Employee updatedEmployee, @PathVariable String employeeID){
         return employeeRepository.findById(employeeID)
                 .map(employee->{
