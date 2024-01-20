@@ -25,13 +25,13 @@ public class EmployeeController {
         return employeeRepository.findAll();
     }
 
-    @GetMapping("employees/{employeeID}")
+    @GetMapping("/employees/{employeeID}")
     Employee getEmployee(@PathVariable String employeeID){
         return employeeRepository.findById(employeeID)
                 .orElseThrow(()->new EmployeeNotFoundException(employeeID));
     }
 
-    @PutMapping("employees/edit/{employeeID}")
+    @PutMapping("/employees/edit/{employeeID}")
         Employee updateEmployee(@RequestBody Employee updatedEmployee, @PathVariable String employeeID){
             return employeeRepository.findById(employeeID)
                     .map(employee->{
@@ -48,7 +48,7 @@ public class EmployeeController {
                     }).orElseThrow(()-> new EmployeeNotFoundException(employeeID));
         }
 
-        @DeleteMapping("employees/delete/{employeeID}")
+        @DeleteMapping("/employees/delete/{employeeID}")
         String deleteEmployee(@PathVariable String employeeID){
             if(!employeeRepository.existsById(employeeID)){
             throw new EmployeeNotFoundException((employeeID));
