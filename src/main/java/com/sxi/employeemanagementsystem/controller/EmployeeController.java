@@ -31,6 +31,16 @@ public class EmployeeController {
                 .orElseThrow(()->new EmployeeNotFoundException(employeeID));
     }
 
+    @GetMapping("/employees/latestID")
+    String generateNextEmployeeID(){
+        String latestID = employeeRepository.getLatestId();
+        if(latestID == null) return "EMP001";
+        else {
+            int num = Integer.parseInt(latestID.substring(3)) + 1;
+            return "EMP" + String.format("%03d", num);
+        }
+    }
+
     @PutMapping("/employees/edit/{employeeID}")
     Employee updateEmployee(@RequestBody Employee updatedEmployee, @PathVariable String employeeID){
         return employeeRepository.findById(employeeID)
