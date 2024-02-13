@@ -20,9 +20,14 @@ public class EmployeeController {
         return employeeRepository.save(newEmployee);
     }
 
-    @GetMapping("/employees")
+    @GetMapping("/allEmployees")
     List<Employee> getAllEmployees(){
         return employeeRepository.findAll();
+    }
+
+    @GetMapping("/currentEmployees")
+    List<Employee> getCurrentEmployees(){
+        return employeeRepository.findByDelFalse();
     }
 
     @GetMapping("/employees/{employeeID}")
@@ -58,13 +63,22 @@ public class EmployeeController {
                 }).orElseThrow(()-> new EmployeeNotFoundException(employeeID));
     }
 
-    @DeleteMapping("/employees/delete/{employeeID}")
-    String deleteEmployee(@PathVariable String employeeID){
+    @DeleteMapping("/employees/softDelete/{employeeID}")
+    String softDelete(@PathVariable String employeeID){
+        Employee employee = employeeRepository.findById(employeeID)
+                .orElseThrow( () ->  new EmployeeNotFoundException(employeeID));
+        employee.setDel(true);
+        employeeRepository.save(employee);
+        return employeeID + " soft deletion successful.";
+    }
+
+    @DeleteMapping("/employees/hardDelete/{employeeID}")
+    String hardDeleteEmployee(@PathVariable String employeeID){
         if(!employeeRepository.existsById(employeeID)){
             throw new EmployeeNotFoundException((employeeID));
         }
         employeeRepository.deleteById(employeeID);
-        return "Employee " + employeeID + " successfully deleted.";
+        return employeeID + " hard deletion successful.";
     }
 
 }
