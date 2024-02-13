@@ -19,10 +19,12 @@ public class Employee {
     private LocalDate hireDate;
     private float salary;
 
+    private boolean del = false;
+
     public Employee() {
     }
 
-    public Employee(String employeeID, String companyID, String firstName, String middleName, String lastName, String tin, String sssGsis, LocalDate hireDate, float salary) {
+    public Employee(String employeeID, String companyID, String firstName, String middleName, String lastName, String tin, String sssGsis, LocalDate hireDate, float salary, boolean del) {
         this.employeeID = employeeID;
         this.companyID = companyID;
         this.firstName = firstName;
@@ -32,6 +34,7 @@ public class Employee {
         this.sssGsis = sssGsis;
         this.hireDate = hireDate;
         this.salary = salary;
+        this.del = del;
     }
 
     public String getEmployeeID() {
@@ -104,5 +107,13 @@ public class Employee {
 
     public void setSalary(float salary) {
         this.salary = salary;
+    }
+
+    public boolean isDel() {
+        return del;
+    }
+
+    public void setDel(boolean del) {
+        this.del = del;
     }
 }
