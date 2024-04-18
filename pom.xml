@@ -11,6 +11,7 @@
 	<groupId>com.sxi</groupId>
 	<artifactId>employee-management-system</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>SXI Employee Management System</name>
 	<description>Internship Project for Solutions Exchange</description>
 	<properties>
