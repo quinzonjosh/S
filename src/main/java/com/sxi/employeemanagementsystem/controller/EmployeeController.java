@@ -6,6 +6,7 @@ import com.sxi.employeemanagementsystem.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -44,6 +45,30 @@ public class EmployeeController {
             int num = Integer.parseInt(latestID.substring(3)) + 1;
             return "EMP" + String.format("%03d", num);
         }
+    }
+
+    @GetMapping("/employees/tin")
+    List<String> getAllTIN(){
+        List<String> tinList = new ArrayList<>();
+        List<Employee> employees = employeeRepository.findAll();
+
+        for(Employee employee : employees){
+            tinList.add(employee.getTin());
+        }
+
+        return tinList;
+    }
+
+    @GetMapping("/employees/sssGsis")
+    List<String> getAllSSSGSIS(){
+        List<String> sssGsisList = new ArrayList<>();
+        List<Employee> employees = employeeRepository.findAll();
+
+        for(Employee employee : employees){
+            sssGsisList.add(employee.getSssGsis());
+        }
+
+        return sssGsisList;
     }
 
     @PutMapping("/employees/edit/{employeeID}")
